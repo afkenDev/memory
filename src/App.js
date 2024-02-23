@@ -14,7 +14,7 @@ const imgs = [
 
 const Card = ({ imgSrc, isFlipped, onClick }) => (
   <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={onClick}>
-    <img src={isFlipped ? imgSrc : 'public/img/cover.png'} alt="Cover" />
+    <img src={isFlipped ? imgSrc : 'public\img\cover.png'} alt="Cover" />
   </div>
 );
 

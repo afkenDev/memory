@@ -1,77 +1,32 @@
-/* Resetting default margin and padding for all elements */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; /* Border and padding included in width/height */
-}
-
-/* Basic styling for the body */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f7f7f7; /* Light gray background */
-  color: #333; /* Dark gray text color */
-}
-
-/* Styling for headings */
-h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0; /* Space above and below headings */
-  font-weight: bold;
-}
-
-/* Styling for paragraphs */
-p {
-  margin: 10px 0; /* Space above and below paragraphs */
-}
-
-/* Styling for links */
-a {
-  color: #007bff; /* Blue link color */
-  text-decoration: none; /* Remove underline */
-}
-
-a:hover {
-  text-decoration: underline; /* Underline on hover */
-}
-
-/* Styling for lists */
-ul, ol {
-  margin: 10px 0; /* Space above and below lists */
-}
-
-/* Styling for list items */
-li {
-  margin: 5px 0; /* Space above and below list items */
-}
-
-/* Styling for images */
-img {
-  max-width: 100%; /* Ensure images don't overflow their container */
-  height: auto; /* Maintain aspect ratio */
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(4, 50%);
-  grid-template-rows: repeat(4, 50%);
-  width: 100%;
-  height: 100vh;
-}
-
-.item {
-  border: 1px solid #000;
+/* App.css */
+.App {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  height: 100vh;
 }
 
-.item img {
-  max-width: 100%;
-  max-height: 100%;
-  display: none;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 100px); /* Adjust according to your preference */
+  grid-template-rows: repeat(2, 100px); /* Adjust according to your preference */
+  gap: 10px;
 }
 
-.item.clicked img {
-  display: block;
+/* Card.css */
+.card {
+  width: 100px; /* Adjust according to your preference */
+  height: 100px; /* Adjust according to your preference */
+  perspective: 1000px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.5s;
+}
+
+.card.flipped img {
+  transform: rotateY(180deg);
 }
