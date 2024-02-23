@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+/* Resetting default margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Border and padding included in width/height */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Basic styling for the body */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f7f7f7; /* Light gray background */
+  color: #333; /* Dark gray text color */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Styling for headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0; /* Space above and below headings */
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Styling for paragraphs */
+p {
+  margin: 10px 0; /* Space above and below paragraphs */
+}
+
+/* Styling for links */
+a {
+  color: #007bff; /* Blue link color */
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Styling for lists */
+ul, ol {
+  margin: 10px 0; /* Space above and below lists */
+}
+
+/* Styling for list items */
+li {
+  margin: 5px 0; /* Space above and below list items */
+}
+
+/* Styling for images */
+img {
+  max-width: 100%; /* Ensure images don't overflow their container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 50%);
+  grid-template-rows: repeat(4, 50%);
+  width: 100%;
+  height: 100vh;
+}
+
+.item {
+  border: 1px solid #000;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.item img {
+  max-width: 100%;
+  max-height: 100%;
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.item.clicked img {
+  display: block;
 }
