@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import './App.css';
+import SingleCard from './components/SingleCard';
 
 const animal_imgs = [
-  {"src": "public/img/camel.png", "backgroundColor": "#ff0000"},
-  {"src": "public/img/cat.png", "backgroundColor": "#00ff00"},
-  {"src": "public/img/dog.png", "backgroundColor": "#0000ff"},
-  {"src": "public/img/dogger.png", "backgroundColor": "#ffff00"},
-  {"src": "public/img/mouse.png", "backgroundColor": "#ff00ff"},
-  {"src": "public/img/penguin.png", "backgroundColor": "#00ffff"},
-  {"src": "public/img/rabbit.png", "backgroundColor": "#800080"},
-  {"src": "public/img/whale.png", "backgroundColor": "#008080"}
+  {"src": "/img/camel.png", "backgroundColor": "#ff0000"},
+  {"src": "/img/dog.png", "backgroundColor": "#0000ff"},
+  {"src": "/img/fox.png", "backgroundColor": "#ffff00"},
+  {"src": "/img/mouse.png", "backgroundColor": "#ff00ff"},
+  {"src": "/img/penguin.png", "backgroundColor": "#00ffff"},
+  {"src": "/img/rabbit.png", "backgroundColor": "#800080"},
+  {"src": "/img/whale.png", "backgroundColor": "#008080"},
+  {"src": "/img/cat.png", "backgroundColor": "#00ff00"}
 ];
 
 
@@ -17,7 +18,11 @@ function App() {
 
   const [cards, setCards] = useState([])
 
-  const [turns, setTurns] = useState([])
+  const [turns, setTurns] = useState(0)
+
+  const [choiceOne, setChoiceOne] = useState(null)
+
+  const [choiceTwo, setChoiceTwo] = useState(null)
 
   //shuffle 
   const mischen = () => {
@@ -35,12 +40,7 @@ function App() {
       <button onClick={mischen}>New Game</button>
       <div className="card-grid">
         {cards.map(card => (
-          <div className="card"key={card.id}>
-            <div>
-              <img className='front' src={card.src} alt='card front' />
-              <img className='back' src='/img/cover.png' alt="card back"/>
-            </div>
-          </div>
+          <SingleCard key={card.id} card={card}/>
         ))}
       </div>
     </div>
