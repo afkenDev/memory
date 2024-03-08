@@ -3,14 +3,14 @@ import './App.css';
 import SingleCard from './components/SingleCard';
 
 const animal_imgs = [
-  {"src": "/img/camel.png", "backgroundColor": "#ff0000"},
-  {"src": "/img/dog.png", "backgroundColor": "#0000ff"},
-  {"src": "/img/fox.png", "backgroundColor": "#ffff00"},
-  {"src": "/img/mouse.png", "backgroundColor": "#ff00ff"},
-  {"src": "/img/penguin.png", "backgroundColor": "#00ffff"},
-  {"src": "/img/rabbit.png", "backgroundColor": "#800080"},
-  {"src": "/img/whale.png", "backgroundColor": "#008080"},
-  {"src": "/img/cat.png", "backgroundColor": "#00ff00"}
+  {"src": "/img/camel.png", "backgroundColor": "#ff0000", matched: false},
+  {"src": "/img/dog.png", "backgroundColor": "#0000ff", matched: false},
+  {"src": "/img/fox.png", "backgroundColor": "#ffff00", matched: false},
+  {"src": "/img/mouse.png", "backgroundColor": "#ff00ff", matched: false},
+  {"src": "/img/penguin.png", "backgroundColor": "#00ffff", matched: false},
+  {"src": "/img/rabbit.png", "backgroundColor": "#800080", matched: false},
+  {"src": "/img/whale.png", "backgroundColor": "#008080", matched: false},
+  {"src": "/img/cat.png", "backgroundColor": "#00ff00", matched: false}
 ];
 
 
@@ -24,7 +24,7 @@ function App() {
 
   const [choiceTwo, setChoiceTwo] = useState(null)
 
-  //shuffle 
+  //mischen 
   const mischen = () => {
     const gemischt = [...animal_imgs, ...animal_imgs]
       .sort(() => Math.random() - 0.5)
@@ -34,13 +34,37 @@ function App() {
       setTurns(0)
   }
 
+  //Handle Choice
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
+
+  //vergleichen
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        resetTurn()
+      }
+      else {
+        resetTurn()
+      }
+    }}, [choiceOne, choiceTwo])
+
+
+  //neuer turn
+  const resetTurn = () => {
+    setChoiceOne = null
+    setChoiceTwo = null 
+    setTurns(prevTurns => prevTurns++)
+  }
+
   return (
     <div className="App">
       <h1>MEGA CUTIE ANIMAL MEMORY</h1>
       <button onClick={mischen}>New Game</button>
       <div className="card-grid">
         {cards.map(card => (
-          <SingleCard key={card.id} card={card}/>
+          <SingleCard key={card.id} card={card} handleChoice={handleChoice}/>
         ))}
       </div>
     </div>
