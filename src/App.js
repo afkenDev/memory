@@ -14,17 +14,17 @@ const animal_imgs = [
 ];
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([]); // einzelne cards
 
-  const [turns, setTurns] = useState(0);
+  const [turns, setTurns] = useState(0); // anzahl turns
 
-  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceOne, setChoiceOne] = useState(null); // erste Karte die man anwählt
 
-  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null); // zweite Karte die man anwählt
 
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false); // das deaktivieren der Karten, damit sie nicht nochmal anklickbar sind. 
 
-  //mischen
+  //mischen des Arrays
   const mischen = () => {
     const gemischt = [...animal_imgs, ...animal_imgs]
       .sort(() => Math.random() - 0.5)
@@ -57,37 +57,39 @@ function App() {
         });
         resetTurn();
       } else {
-        setTimeout(() => resetTurn(), 1500);
+        setTimeout(() => resetTurn(), 1500); // Man kann die Bilder 1.5s anschauen
       }
     }
   }, [choiceOne, choiceTwo]);
 
-  //neuer turn
-  const resetTurn = () => {
-    setChoiceOne = null;
-    setChoiceTwo = null;
-    setTurns((prevTurns) => prevTurns++);
-    setDisabled(false);
-  };
+//neuer turn
+const resetTurn = () => {
+  setChoiceOne(null);
+  setChoiceTwo(null);
+  setTurns((prevTurns) => prevTurns + 1); // turns zählen
+  setDisabled(false);
+};
+
 
   //Ladestart
   useEffect(() => {
     mischen();
   },[])
 
+    // GameFrame -> Array wird geladen und das CSS sorgt für 4x4
   return (
     <div className="App">
       <h1>MEGA CUTIE ANIMAL MEMORY</h1>
       <button onClick={mischen}>New Game</button>
-      <div className="card-grid">
+      <div className="card-grid"> 
         {cards.map((card) => (
           <SingleCard
-            key={card.id}
-            card={card}
-            handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
-            disabled={true}
-          />
+          key={card.id}
+          card={card}
+          handleChoice={handleChoice}
+          flipped={card === choiceOne || card === choiceTwo || card.matched}
+          disabled={disabled} 
+        />        
         ))}
       </div>
       <p>Turns: {turns}</p>
